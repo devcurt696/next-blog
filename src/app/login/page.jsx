@@ -19,7 +19,7 @@ const LoginPage = () => {
     <div className={styles.container}>
         <div className={styles.wrapper}>
             <div className={styles.socialButton} onClick={() => signIn('google')}>Google</div>
-            <div className={styles.socialButton}>Github</div>
+            <div className={styles.socialButton} onClick={() => signIn('github')}>Github</div>
             <div className={styles.socialButton}>Facebook</div>
         </div>
     </div>
