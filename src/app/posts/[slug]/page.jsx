@@ -25,11 +25,11 @@ const SinglePage = async ({params}) => {
     <div className={styles.container}>
         <div className={styles.infoContainer}>
         <div className={styles.textContainer}>
-            <h1 className={styles.title}>{data?.post.title}</h1>
-               {data.image && ( 
+            <h1 className={styles.title}>{data?.title}</h1>
+               {data?.post.user.image && ( 
                 <div className={styles.userImageContainer}>
                     <Image 
-                    src='/p1.jpeg'
+                    src={data?.post.user.image}
                     alt=''
                     fill
                     className={styles.avatar}
@@ -37,27 +37,30 @@ const SinglePage = async ({params}) => {
                 </div>
                 )}
             <div className={styles.userTextContainer}>
-                <span className={styles.username}>{data?.}</span>
-                <span className={styles.date}>10.16.2023</span>
+                <span className={styles.username}>{data?.post.user.name}</span>
+                <span className={styles.date}>{data?.post.createdAt.substring(0, 10)}</span>
             </div>
         </div>
-        <div className={styles.imageContainer}>
-            <Image 
-                src="/p1.jpeg"
+        
+           {data?.post.img && (
+            <div className={styles.imageContainer}>
+              <Image 
+                src={data?.post.img}
                 alt=''
                 fill
                 className={styles.image}
-            />
-        </div>
+              />
+            </div>
+           )}
         </div>
         
         <div className={styles.content}>
             <div className={styles.post}>
-                <div className={styles.description}>
-                {data?.post.desc}
+                <div className={styles.description} dangerouslySetInnerHTML={{__html: data?.post.desc}}>
+                {}
                 </div>
                 <div className={styles.comment}>
-                    <Comments />
+                    <Comments postSlug={slug} />
                 </div>
             </div>
             <Menu />
